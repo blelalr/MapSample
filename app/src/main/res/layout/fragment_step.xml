@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nestedScrollView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.step.StepFragment">
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:background="@android:color/white"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="100dp"
+    app:layout_behavior="@string/bottom_sheet_behavior">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
@@ -12,6 +19,8 @@
         android:clipToPadding="false"
         android:paddingTop="@dimen/list_item_spacing_half"
         android:paddingBottom="@dimen/list_item_spacing_half"
-        />
+        tools:listitem="@layout/fragment_transit_dialog_list_dialog_step"/>
 
-</FrameLayout>
+</androidx.core.widget.NestedScrollView>
+
+

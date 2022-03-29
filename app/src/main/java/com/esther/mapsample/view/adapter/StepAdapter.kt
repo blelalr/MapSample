@@ -1,5 +1,6 @@
 package com.esther.mapsample.view.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
@@ -23,6 +24,7 @@ class StepAdapter constructor(private val mItemCount: Int) :
 
     override fun onBindViewHolder(holder:StepViewHolder, position: Int) {
         holder.text.text = position.toString()
+        Log.d("test", "$position")
     }
 
     override fun getItemCount(): Int {
