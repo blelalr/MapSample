@@ -1,7 +1,9 @@
-package com.esther.mapsample
+package com.esther.mapsample.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import com.esther.mapsample.R
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -10,11 +12,16 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.esther.mapsample.databinding.ActivityMapsBinding
+import com.esther.mapsample.model.Transit
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.gson.Gson
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
+    lateinit var jsonString: String
+    lateinit var transitDialogFragment: TransitDialogFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +33,23 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        try {
+            jsonString =  applicationContext.assets.open("transit.json")
+                .bufferedReader()
+                .use { it.readText() }
+            val transit: Transit = Gson().fromJson(jsonString, Transit::class.java)
+            Log.d("esther", "${transit}")
+
+        } catch (e: Exception) {
+            Log.d("esther", "error ${e.message}")
+        }
+        transitDialogFragment = TransitDialogFragment.newInstance(30)
+
+        binding.fabDirections.setOnClickListener {
+            transitDialogFragment.show(supportFragmentManager, "dialog")
+        }
+        transitDialogFragment.show(supportFragmentManager, "dialog")
     }
 
     /**

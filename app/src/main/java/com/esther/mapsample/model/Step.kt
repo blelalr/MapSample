@@ -45,7 +45,7 @@ data class Step(
     @SerializedName("polyline")
     val polyline: String,
     @SerializedName("price")
-    val price: Int,
+    val price: Double,
     @SerializedName("product_id")
     val productId: String,
     @SerializedName("product_name")
