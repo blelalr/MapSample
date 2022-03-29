@@ -15,7 +15,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCa
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 // TODO: Customize parameter argument names
-const val ARG_ITEM_COUNT = "item_count"
+//const val ARG_ITEM_COUNT = "item_count"
 
 /**
  *
@@ -26,7 +26,7 @@ const val ARG_ITEM_COUNT = "item_count"
  *    TransitDialogFragment.newInstance(30).show(supportFragmentManager, "dialog")
  * </pre>
  */
-class TransitDialogFragment : BottomSheetDialogFragment() {
+class TransitDialogFragment  : BottomSheetDialogFragment() {
 
     private var _binding: FragmentTransitDialogListDialogBinding? = null
 
@@ -47,19 +47,19 @@ class TransitDialogFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.list.layoutManager =
             LinearLayoutManager(context)
-        binding.list.adapter =
-            arguments?.getInt(ARG_ITEM_COUNT)?.let {
-                Log.d("esther", "$it")
-                StepAdapter(it)
-            }
+//        binding.list.adapter =
+//            arguments?.getInt(ARG_ITEM_COUNT)?.let {
+//                Log.d("test", "$it")
+//                StepAdapter(it)
+//            }
     }
 
     companion object {
         fun newInstance(itemCount: Int): TransitDialogFragment =
             TransitDialogFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_ITEM_COUNT, itemCount)
-                }
+//                arguments = Bundle().apply {
+//                    putInt(ARG_ITEM_COUNT, itemCount)
+//                }
             }
     }
 

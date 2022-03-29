@@ -1,19 +1,18 @@
 package com.esther.mapsample.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.esther.mapsample.R
-
+import com.esther.mapsample.databinding.ActivityMapsBinding
+import com.esther.mapsample.model.Transit
+import com.esther.mapsample.view.step.StepFragment
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.esther.mapsample.databinding.ActivityMapsBinding
-import com.esther.mapsample.model.Transit
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.gson.Gson
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -21,7 +20,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
     lateinit var jsonString: String
-    lateinit var transitDialogFragment: TransitDialogFragment
+    lateinit var stepFragment: StepFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +30,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
-            .findFragmentById(R.id.map) as SupportMapFragment
+            .findFragmentById(R.id.fragment_map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
         try {
@@ -39,17 +38,18 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 .bufferedReader()
                 .use { it.readText() }
             val transit: Transit = Gson().fromJson(jsonString, Transit::class.java)
-            Log.d("esther", "${transit}")
+            Log.d("test", "${transit}")
 
         } catch (e: Exception) {
-            Log.d("esther", "error ${e.message}")
+            Log.d("test", "error ${e.message}")
         }
-        transitDialogFragment = TransitDialogFragment.newInstance(30)
-
+        stepFragment = StepFragment.newInstance(30)
+        this.supportFragmentManager.beginTransaction().replace(R.id.fragment_step, stepFragment)
+        this.supportFragmentManager.beginTransaction().commit()
         binding.fabDirections.setOnClickListener {
-            transitDialogFragment.show(supportFragmentManager, "dialog")
+//            transitDialogFragment.show(supportFragmentManager, "dialog")
         }
-        transitDialogFragment.show(supportFragmentManager, "dialog")
+//        transitDialogFragment.show(supportFragmentManager, "dialog")
     }
 
     /**
