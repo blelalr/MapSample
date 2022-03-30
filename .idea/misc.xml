@@ -10,9 +10,12 @@
         <entry key="app/src/main/res/layout/fragment_transit_dialog_list_dialog.xml" value="0.3640625" />
         <entry key="app/src/main/res/layout/fragment_transit_dialog_list_dialog_step.xml" value="0.3640625" />
         <entry key="app/src/main/res/layout/step_bus_item.xml" value="0.1947463768115942" />
+        <entry key="app/src/main/res/layout/step_departure_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/step_destination_item.xml" value="0.2703125" />
         <entry key="app/src/main/res/layout/step_fragment.xml" value="0.35733695652173914" />
-        <entry key="app/src/main/res/layout/step_item_view.xml" value="0.2703125" />
-        <entry key="app/src/main/res/layout/step_walk_item.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/step_item_view.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/step_others_item.xml" value="0.27545454545454545" />
+        <entry key="app/src/main/res/layout/step_walk_item.xml" value="0.3463821411132813" />
       </map>
     </option>
   </component>

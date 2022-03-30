@@ -83,9 +83,10 @@
                     <!--                    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_step"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        app:stepViewModels="@{viewModel.stepList}"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
                     <!--                    <androidx.constraintlayout.widget.ConstraintLayout-->
                     <!--                        android:id="@+id/bottom_sheet_footer"-->

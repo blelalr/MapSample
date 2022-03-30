@@ -25,7 +25,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private val mainViewModel: MainViewModel by viewModels()
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
-    private lateinit  var bottomSheetBehavior: BottomSheetBehavior<*>
+    private lateinit var bottomSheetBehavior: BottomSheetBehavior<*>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,10 +49,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
         }
 
-        binding.rvStep.layoutManager =
-            LinearLayoutManager(applicationContext)
-//        binding.rvStep.adapter = StepListAdapter(10)
-
         bottomSheetBehavior = BottomSheetBehavior.from<View>(binding.bottomSheet)
         val peekHeight =
             TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100f, resources.displayMetrics)
@@ -60,8 +56,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         bottomSheetBehavior.peekHeight = peekHeight
         bottomSheetBehavior.isHideable = true
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-
-
     }
 
 

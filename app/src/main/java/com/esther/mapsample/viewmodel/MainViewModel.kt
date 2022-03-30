@@ -33,38 +33,33 @@ class MainViewModel @Inject constructor(
     private fun loadData() {
         viewModelScope.launch {
             val transit = transitMockData.getTransit()
-            val step = transit.steps.groupBy {
-                it.mode
-            }
-            val viewData = createViewData(transit, step)
+            val viewData = createViewData(transit, transit.steps)
             _stepList.postValue(viewData)
         }
     }
 
-    private fun createViewData(transit: Transit, stepByMode: Map<String, List<Step>>): List<StepViewModel> {
+    private fun createViewData(transit: Transit, steps: List<Step>): List<StepViewModel> {
         val viewData = mutableListOf<StepViewModel>()
-        stepByMode.keys.forEach {
-            val steps = stepByMode[it]
-            viewData.add(DepartureViewModel(transit))
-            steps?.forEach { step: Step ->
-                Log.d("test", "${step.mode}")
-                 when (TransitMode.from(step.mode)) {
-                    TransitMode.Train, TransitMode.Tram, TransitMode.Bus, TransitMode.Subway -> {
-                        viewData.add(OthersViewModel(step))
-                    }
-                    TransitMode.Walk -> {
-                        viewData.add(WalkViewModel(step))
-                    }
-                    TransitMode.Driving -> {
-                        viewData.add(OthersViewModel(step))
-                    }
-                    TransitMode.Cycling -> {
-                        viewData.add(OthersViewModel(step))
-                    }
+        viewData.add(DepartureViewModel(transit))
+        steps.forEach { step ->
+            Log.d("test", "${step.mode}")
+            when (TransitMode.from(step.mode)) {
+                TransitMode.Train, TransitMode.Tram, TransitMode.Bus, TransitMode.Subway -> {
+                    viewData.add(OthersViewModel(step))
+                }
+                TransitMode.Walk -> {
+                    viewData.add(WalkViewModel(step))
+                }
+                TransitMode.Driving -> {
+                    viewData.add(OthersViewModel(step))
+                }
+                TransitMode.Cycling -> {
+                    viewData.add(OthersViewModel(step))
                 }
             }
         }
-
+        viewData.add(DestinationViewModel(transit))
+        Log.d("test", "${viewData.size}")
         return viewData
     }
 

@@ -19,7 +19,7 @@
         android:clipToPadding="false"
         android:paddingTop="@dimen/list_item_spacing_half"
         android:paddingBottom="@dimen/list_item_spacing_half"
-        tools:listitem="@layout/step_item_view"/>
+        tools:listitem="@layout/step_departure_item"/>
 
 </androidx.core.widget.NestedScrollView>
 
