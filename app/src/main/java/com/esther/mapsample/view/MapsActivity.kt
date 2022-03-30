@@ -1,15 +1,15 @@
 package com.esther.mapsample.view
 
 import android.os.Bundle
-import android.util.Log
 import android.util.TypedValue
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.esther.mapsample.viewmodel.MainViewModel
 import com.esther.mapsample.R
 import com.esther.mapsample.databinding.ActivityMapsBinding
-import com.esther.mapsample.model.Transit
-import com.esther.mapsample.view.adapter.StepAdapter
+//import com.esther.mapsample.view.adapter.StepListAdapter
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -17,22 +17,23 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.gson.Gson
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
-
+    private val mainViewModel: MainViewModel by viewModels()
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
-    lateinit var jsonString: String
-    lateinit  var bottomSheetBehavior: BottomSheetBehavior<*>
+    private lateinit  var bottomSheetBehavior: BottomSheetBehavior<*>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMapsBinding.inflate(layoutInflater)
+        binding.lifecycleOwner = this
+        binding.viewModel = mainViewModel
         setContentView(binding.root)
-        fetchData()
         initView()
 
     }
@@ -50,7 +51,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         binding.rvStep.layoutManager =
             LinearLayoutManager(applicationContext)
-        binding.rvStep.adapter = StepAdapter(10)
+//        binding.rvStep.adapter = StepListAdapter(10)
 
         bottomSheetBehavior = BottomSheetBehavior.from<View>(binding.bottomSheet)
         val peekHeight =
@@ -63,18 +64,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     }
 
-    private fun fetchData() {
-        try {
-            jsonString =  applicationContext.assets.open("transit.json")
-                .bufferedReader()
-                .use { it.readText() }
-            val transit: Transit = Gson().fromJson(jsonString, Transit::class.java)
-//            Log.d("test", "${transit}")
-
-        } catch (e: Exception) {
-            Log.d("test", "error ${e.message}")
-        }
-    }
 
     /**
      * Manipulates the map once available.
