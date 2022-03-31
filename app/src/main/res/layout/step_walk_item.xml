@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/mulish_regular"
             android:lineSpacingExtra="5sp"
-            tools:text="Walking 8 min (0.4 mi)"
+            android:text="@{itemViewModel.hint}"
             android:textColor="#eb000000"
             android:textSize="13sp"
             android:layout_marginStart="@dimen/item_spacing_half"

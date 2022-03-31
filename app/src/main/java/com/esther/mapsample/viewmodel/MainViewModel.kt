@@ -1,10 +1,9 @@
 package com.esther.mapsample.viewmodel
 
+import android.app.Application
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import com.esther.mapsample.R
 import com.esther.mapsample.model.Step
 import com.esther.mapsample.model.Transit
 import com.esther.mapsample.model.TransitMockData
@@ -16,8 +15,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val transitMockData: TransitMockData
-) : ViewModel() {
+    private val transitMockData: TransitMockData,
+    application: Application
+) : AndroidViewModel(application) {
     val transit: LiveData<Transit>
         get() = _transit
     private val _transit = MutableLiveData<Transit>()
@@ -29,6 +29,11 @@ class MainViewModel @Inject constructor(
     init {
         loadData()
     }
+
+    private fun getResString(res: Int): String {
+        return getApplication<Application>().resources.getString(res)
+    }
+
 
     private fun loadData() {
         viewModelScope.launch {
@@ -48,7 +53,12 @@ class MainViewModel @Inject constructor(
                     viewData.add(OthersViewModel(step))
                 }
                 TransitMode.Walk -> {
-                    viewData.add(WalkViewModel(step))
+                    val hint: String = String.format(
+                        getResString(R.string.walk_hint),
+                        step.estimatedTime.toString(), //TODO sec to min
+                        step.distance.toString() //TODO meter to mile
+                    )
+                    viewData.add(WalkViewModel(hint))
                 }
                 TransitMode.Driving -> {
                     viewData.add(OthersViewModel(step))
