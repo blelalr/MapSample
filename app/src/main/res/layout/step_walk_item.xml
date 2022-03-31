@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="itemViewModel"
+            name="stepViewModel"
             type="com.esther.mapsample.viewmodel.WalkViewModel" />
     </data>
 
@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/mulish_regular"
             android:lineSpacingExtra="5sp"
-            android:text="@{itemViewModel.hint}"
+            android:text="@{stepViewModel.hint}"
             android:textColor="#eb000000"
             android:textSize="13sp"
             android:layout_marginStart="@dimen/item_spacing_half"

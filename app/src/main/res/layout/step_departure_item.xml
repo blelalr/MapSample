@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="itemViewModel"
+            name="stepViewModel"
             type="com.esther.mapsample.viewmodel.DepartureViewModel" />
     </data>
 
@@ -33,7 +33,7 @@
             android:background="?attr/selectableItemBackground"
             android:fontFamily="@font/mulish_bold"
             android:lineSpacingExtra="5sp"
-            android:text="@{itemViewModel.departure}"
+            android:text="@{stepViewModel.departure}"
             android:textColor="@color/black"
             android:textSize="13sp"
             android:textStyle="bold"

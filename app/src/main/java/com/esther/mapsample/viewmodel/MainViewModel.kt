@@ -1,6 +1,7 @@
 package com.esther.mapsample.viewmodel
 
 import android.app.Application
+import android.graphics.Color
 import android.util.Log
 import androidx.lifecycle.*
 import com.esther.mapsample.R
@@ -8,6 +9,7 @@ import com.esther.mapsample.model.Step
 import com.esther.mapsample.model.Transit
 import com.esther.mapsample.model.TransitMockData
 import com.esther.mapsample.util.TransitMode
+import com.esther.mapsample.util.UnitConverter
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -50,21 +52,23 @@ class MainViewModel @Inject constructor(
             Log.d("test", "${step.mode}")
             when (TransitMode.from(step.mode)) {
                 TransitMode.Train, TransitMode.Tram, TransitMode.Bus, TransitMode.Subway -> {
-                    viewData.add(OthersViewModel(step))
+                    val hint: String = String.format(
+                        getResString(R.string.others_hint),
+                        UnitConverter.unitTimeToMin(step.arrive)
+                    )
+                    val lineColor = Color.parseColor(step.stepsDetail.first().line.color)
+                    viewData.add(OthersViewModel(step, hint, lineColor))
                 }
                 TransitMode.Walk -> {
                     val hint: String = String.format(
                         getResString(R.string.walk_hint),
-                        step.estimatedTime.toString(), //TODO sec to min
-                        step.distance.toString() //TODO meter to mile
+                        UnitConverter.sceToMin(step.estimatedTime),
+                        UnitConverter.meterToMiles(step.distance)
                     )
                     viewData.add(WalkViewModel(hint))
                 }
-                TransitMode.Driving -> {
-                    viewData.add(OthersViewModel(step))
-                }
+                TransitMode.Driving,
                 TransitMode.Cycling -> {
-                    viewData.add(OthersViewModel(step))
                 }
             }
         }

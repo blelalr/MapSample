@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="itemViewModel"
+            name="stepViewModel"
             type="com.esther.mapsample.viewmodel.OthersViewModel" />
     </data>
 
@@ -19,7 +19,7 @@
             android:layout_width="@dimen/step_line"
             android:layout_height="0dp"
             android:layout_marginStart="@dimen/step_line_margin_start"
-            android:background="@color/primary"
+            android:background="@{stepViewModel.lineColor}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -55,9 +55,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/mulish_bold"
-            android:minWidth="0dp"
+            android:minWidth="36dp"
+            android:enabled="false"
             android:minHeight="0dp"
-            android:textColor="@color/primary"
+            android:text="@{stepViewModel.step.shortNameNo}"
+            android:textColor="@{stepViewModel.lineColor}"
+            app:strokeColor="@{stepViewModel.lineColor}"
             android:textSize="13sp"
             android:textStyle="bold"
             android:layout_marginTop="@dimen/item_spacing_quarter"
@@ -66,7 +69,6 @@
             app:cornerRadius="4dp"
             app:layout_constraintStart_toStartOf="@+id/tv_start_stop"
             app:layout_constraintTop_toBottomOf="@+id/tv_start_stop"
-            app:strokeColor="@color/primary"
             tools:text="123" />
 
         <TextView
@@ -77,6 +79,7 @@
             android:textColor="@color/hint"
             android:textSize="13sp"
             android:textStyle="bold"
+            android:text="@{stepViewModel.hint}"
             app:layout_constraintStart_toStartOf="@+id/tv_start_stop"
             app:layout_constraintTop_toBottomOf="@+id/materialButton"
             tools:text="Arrive in 17 min" />
@@ -103,6 +106,7 @@
             android:textColor="@color/black"
             android:textSize="13sp"
             android:textStyle="bold"
+            android:text="@{stepViewModel.step.originName}"
             app:layout_constraintBottom_toBottomOf="@+id/iv_start"
             app:layout_constraintStart_toEndOf="@+id/iv_start"
             app:layout_constraintTop_toTopOf="@+id/v_step_line"
@@ -133,6 +137,7 @@
             android:textColor="#eb000000"
             android:textSize="13sp"
             android:textStyle="bold"
+            android:text="@{stepViewModel.step.destinationName}"
             app:layout_constraintBottom_toBottomOf="@+id/v_step_line"
             app:layout_constraintStart_toEndOf="@+id/iv_end"
             app:layout_constraintTop_toTopOf="@+id/iv_end"
@@ -159,8 +164,6 @@
             android:src="@drawable/ic_transit_ticket"
             app:layout_constraintEnd_toEndOf="@+id/tv_departure_time"
             app:layout_constraintTop_toBottomOf="@+id/tv_departure_time" />
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

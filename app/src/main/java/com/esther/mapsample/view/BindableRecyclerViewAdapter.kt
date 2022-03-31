@@ -10,7 +10,7 @@ import com.esther.mapsample.viewmodel.StepViewModel
 
 class BindableRecyclerViewAdapter : RecyclerView.Adapter<BindableViewHolder>() {
 
-    var itemViewModels: List<StepViewModel> = emptyList()
+    var stepViewModels: List<StepViewModel> = emptyList()
     private val viewTypeToLayoutId: MutableMap<Int, Int> = mutableMapOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindableViewHolder {
@@ -23,28 +23,28 @@ class BindableRecyclerViewAdapter : RecyclerView.Adapter<BindableViewHolder>() {
     }
 
     override fun getItemViewType(position: Int): Int {
-        val item = itemViewModels[position]
+        val item = stepViewModels[position]
         if (!viewTypeToLayoutId.containsKey(item.viewType)) {
             viewTypeToLayoutId[item.viewType] = item.layoutId
         }
         return item.viewType
     }
 
-    override fun getItemCount(): Int = itemViewModels.size
+    override fun getItemCount(): Int = stepViewModels.size
 
     override fun onBindViewHolder(holder: BindableViewHolder, position: Int) {
-        holder.bind(itemViewModels[position])
+        holder.bind(stepViewModels[position])
     }
 
     fun updateItems(items: List<StepViewModel>?) {
-        itemViewModels = items ?: emptyList()
+        stepViewModels = items ?: emptyList()
         notifyDataSetChanged()
     }
 }
 
 class BindableViewHolder(private val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(itemViewModel: StepViewModel) {
-        binding.setVariable(BR.itemViewModel, itemViewModel)
+    fun bind(stepViewModel: StepViewModel) {
+        binding.setVariable(BR.stepViewModel, stepViewModel)
     }
 }

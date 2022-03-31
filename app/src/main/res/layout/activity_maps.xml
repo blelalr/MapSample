@@ -86,7 +86,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/item_spacing"
-                        app:itemViewModels="@{viewModel.stepList}"
+                        app:stepViewModels="@{viewModel.stepList}"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
                     <!--                    <androidx.constraintlayout.widget.ConstraintLayout-->
