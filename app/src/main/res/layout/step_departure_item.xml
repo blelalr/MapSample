@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -9,16 +10,55 @@
             type="com.esther.mapsample.viewmodel.DepartureViewModel" />
     </data>
 
-    <TextView
-        android:id="@+id/text"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginStart="2dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
-        android:paddingLeft="@dimen/list_item_spacing"
-        android:paddingTop="@dimen/list_item_spacing_half"
-        android:paddingRight="@dimen/list_item_spacing"
-        android:paddingBottom="@dimen/list_item_spacing_half"
-        android:text="Start Location name"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        />
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_departure"
+            android:layout_width="@dimen/ic_size"
+            android:layout_height="@dimen/ic_size"
+            android:background="@color/white"
+            android:src="@drawable/ic_departure"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_departure"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/item_spacing_half"
+            android:background="?attr/selectableItemBackground"
+            android:fontFamily="@font/mulish_bold"
+            android:lineSpacingExtra="5sp"
+            android:text="@{itemViewModel.departure}"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_departure"
+            app:layout_constraintEnd_toStartOf="@+id/tv_arrive_time"
+            app:layout_constraintStart_toEndOf="@+id/iv_departure"
+            app:layout_constraintTop_toTopOf="@+id/iv_departure"
+            tools:text="departure name" />
+
+        <TextView
+            android:id="@+id/tv_arrive_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:fontFamily="@font/mulish_bold"
+            android:lineSpacingExtra="5sp"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/item_spacing_quarter"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_departure"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_departure"
+            tools:text="4:37 PM" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

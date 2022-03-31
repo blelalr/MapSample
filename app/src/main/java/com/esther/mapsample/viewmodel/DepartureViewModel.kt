@@ -4,7 +4,7 @@ import androidx.databinding.BaseObservable
 import com.esther.mapsample.R
 import com.esther.mapsample.model.Transit
 
-class DepartureViewModel(val transit: Transit) : BaseObservable(), StepViewModel {
+class DepartureViewModel(val departure: String) : BaseObservable(), StepViewModel {
     override val layoutId: Int = R.layout.step_departure_item
     override val viewType: Int = MainViewModel.DEPARTURE_ITEM
 }

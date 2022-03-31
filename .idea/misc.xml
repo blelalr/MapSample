@@ -3,6 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1735" />
+        <entry key="app/src/main/res/drawable/ic_baseline_near_me_24.xml" value="0.1735" />
+        <entry key="app/src/main/res/drawable/ic_bus.xml" value="0.1735" />
+        <entry key="app/src/main/res/drawable/ic_chevron_right.xml" value="0.1735" />
+        <entry key="app/src/main/res/drawable/ic_depature.xml" value="0.19" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1735" />
+        <entry key="app/src/main/res/drawable/ic_metro.xml" value="0.1735" />
+        <entry key="app/src/main/res/drawable/ic_pin.xml" value="0.1735" />
+        <entry key="app/src/main/res/drawable/ic_transit_ticket.xml" value="0.1735" />
+        <entry key="app/src/main/res/drawable/ic_walking.xml" value="0.1735" />
         <entry key="app/src/main/res/layout/activity_maps.xml" value="0.1" />
         <entry key="app/src/main/res/layout/bottom_sheet_modal.xml" value="0.13145896656534956" />
         <entry key="app/src/main/res/layout/bottom_sheet_persistent.xml" value="0.13145896656534956" />
@@ -10,12 +20,12 @@
         <entry key="app/src/main/res/layout/fragment_transit_dialog_list_dialog.xml" value="0.3640625" />
         <entry key="app/src/main/res/layout/fragment_transit_dialog_list_dialog_step.xml" value="0.3640625" />
         <entry key="app/src/main/res/layout/step_bus_item.xml" value="0.1947463768115942" />
-        <entry key="app/src/main/res/layout/step_departure_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/step_departure_item.xml" value="0.4298187255859375" />
         <entry key="app/src/main/res/layout/step_destination_item.xml" value="0.2703125" />
         <entry key="app/src/main/res/layout/step_fragment.xml" value="0.35733695652173914" />
         <entry key="app/src/main/res/layout/step_item_view.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/step_others_item.xml" value="0.27545454545454545" />
-        <entry key="app/src/main/res/layout/step_walk_item.xml" value="0.3463821411132813" />
+        <entry key="app/src/main/res/layout/step_others_item.xml" value="0.41026458740234373" />
+        <entry key="app/src/main/res/layout/step_walk_item.xml" value="0.31120147705078127" />
       </map>
     </option>
   </component>

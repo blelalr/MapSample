@@ -1,5 +1,13 @@
 <?xml version="1.0"?>
 <resources>
-    <dimen name="list_item_spacing">16dp</dimen>
-    <dimen name="list_item_spacing_half">8dp</dimen>
+    <dimen name="item_spacing">16dp</dimen>
+    <dimen name="item_spacing_half">8dp</dimen>
+    <dimen name="item_spacing_quarter">4dp</dimen>
+    <dimen name="ic_size">24dp</dimen>
+    <dimen name="divider">1dp</dimen>
+    <dimen name="step_line">6dp</dimen>
+    <dimen name="btn_padding_horizontal">3dp</dimen>
+    <dimen name="btn_padding_vertical">0dp</dimen>
+    <dimen name="step_line_margin_start">12dp</dimen>
+    <dimen name="divider_margin">10dp</dimen>
 </resources>

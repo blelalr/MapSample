@@ -9,8 +9,10 @@
     <color name="white">#ffffff</color>
     <color name="red">#e01616</color>
     <color name="primary">#1266c7</color>
-    <color name="secondary">#009924</color>
+    <color name="secondary">#26009924</color>
+    <color name="on_secondary">#009924</color>
     <color name="divider">#e0e7f0</color>
-    <color name="hint">#eaeef0</color>
+    <color name="hint">#85000000</color>
+    <color name="btn_preview_bg">#141b3058</color>
 
 </resources>

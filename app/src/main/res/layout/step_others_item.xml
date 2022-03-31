@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -14,75 +15,151 @@
         android:layout_height="wrap_content">
 
         <View
-            android:id="@+id/view"
-            android:layout_width="10dp"
+            android:id="@+id/v_step_line"
+            android:layout_width="@dimen/step_line"
             android:layout_height="0dp"
-            android:layout_marginLeft="16dp"
-            android:background="@android:color/darker_gray"
+            android:layout_marginStart="@dimen/step_line_margin_start"
+            android:background="@color/primary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <View
-            android:id="@+id/view2"
+            android:id="@+id/divider"
             android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_margin="16dp"
-            android:background="@android:color/darker_gray"
+            android:layout_height="@dimen/divider"
+            android:background="@color/divider"
+            android:layout_marginTop="@dimen/divider_margin"
+            android:layout_marginBottom="@dimen/divider_margin"
             app:layout_constraintBottom_toTopOf="@+id/iv_end"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/view"
-            app:layout_constraintTop_toBottomOf="@+id/view3" />
+            app:layout_constraintStart_toStartOf="@+id/tv_start_stop"
+            app:layout_constraintTop_toBottomOf="@+id/tv_hint" />
 
 
         <ImageView
             android:id="@+id/iv_start"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@android:color/holo_blue_dark"
-            app:layout_constraintEnd_toEndOf="@+id/view"
-            app:layout_constraintStart_toStartOf="@+id/view"
-            app:layout_constraintTop_toTopOf="@+id/view" />
+            android:layout_width="@dimen/ic_size"
+            android:layout_height="@dimen/ic_size"
+            android:background="@color/white"
+            android:src="@drawable/ic_bus"
+            app:layout_constraintEnd_toEndOf="@+id/v_step_line"
+            app:layout_constraintStart_toStartOf="@+id/v_step_line"
+            app:layout_constraintTop_toTopOf="@+id/v_step_line" />
 
-        <View
-            android:id="@+id/view3"
-            android:layout_width="20dp"
-            android:layout_height="80dp"
-            android:background="@color/purple_200"
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/materialButton"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/mulish_bold"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:textColor="@color/primary"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/item_spacing_quarter"
+            android:paddingHorizontal="@dimen/btn_padding_horizontal"
+            android:paddingVertical="@dimen/btn_padding_vertical"
+            app:cornerRadius="4dp"
             app:layout_constraintStart_toStartOf="@+id/tv_start_stop"
-            app:layout_constraintTop_toBottomOf="@+id/tv_start_stop" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_start_stop"
+            app:strokeColor="@color/primary"
+            tools:text="123" />
+
+        <TextView
+            android:id="@+id/tv_hint"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/mulish_bold"
+            android:textColor="@color/hint"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/tv_start_stop"
+            app:layout_constraintTop_toBottomOf="@+id/materialButton"
+            tools:text="Arrive in 17 min" />
 
 
         <ImageView
             android:id="@+id/iv_end"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@android:color/holo_blue_dark"
-            app:layout_constraintBottom_toBottomOf="@+id/view"
-            app:layout_constraintEnd_toEndOf="@+id/view"
-            app:layout_constraintStart_toStartOf="@+id/view" />
+            android:layout_width="@dimen/ic_size"
+            android:layout_height="@dimen/ic_size"
+            android:background="@color/white"
+            android:src="@drawable/ic_bus"
+            app:layout_constraintBottom_toBottomOf="@+id/v_step_line"
+            app:layout_constraintEnd_toEndOf="@+id/v_step_line"
+            app:layout_constraintStart_toStartOf="@+id/v_step_line" />
 
 
         <TextView
             android:id="@+id/tv_start_stop"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:text="Start Stop name"
+            android:layout_marginLeft="@dimen/item_spacing_half"
+            android:fontFamily="@font/mulish_bold"
+            android:lineSpacingExtra="5sp"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/iv_start"
             app:layout_constraintStart_toEndOf="@+id/iv_start"
-            app:layout_constraintTop_toTopOf="@+id/view" />
+            app:layout_constraintTop_toTopOf="@+id/v_step_line"
+            tools:text="Start Stop name" />
+
+        <TextView
+            android:id="@+id/tv_departure_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/mulish_bold"
+            android:lineSpacingExtra="5sp"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/item_spacing_quarter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_start_stop"
+            tools:text="4:00PM" />
 
 
         <TextView
             android:id="@+id/tv_end_stop"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:text="End Stop name"
-            app:layout_constraintBottom_toBottomOf="@+id/view"
+            android:layout_marginLeft="@dimen/item_spacing_half"
+            android:fontFamily="@font/mulish_bold"
+            android:lineSpacingExtra="5sp"
+            android:textColor="#eb000000"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/v_step_line"
             app:layout_constraintStart_toEndOf="@+id/iv_end"
-            app:layout_constraintTop_toTopOf="@+id/iv_end" />
+            app:layout_constraintTop_toTopOf="@+id/iv_end"
+            tools:text="End Stop name" />
+
+
+        <TextView
+            android:id="@+id/tv_arrive_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/mulish_bold"
+            android:lineSpacingExtra="5sp"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/item_spacing_quarter"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_end_stop"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="4:27PM" />
+
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/ic_transit_ticket"
+            app:layout_constraintEnd_toEndOf="@+id/tv_departure_time"
+            app:layout_constraintTop_toBottomOf="@+id/tv_departure_time" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

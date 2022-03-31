@@ -40,7 +40,7 @@ class MainViewModel @Inject constructor(
 
     private fun createViewData(transit: Transit, steps: List<Step>): List<StepViewModel> {
         val viewData = mutableListOf<StepViewModel>()
-        viewData.add(DepartureViewModel(transit))
+        viewData.add(DepartureViewModel(transit.steps.first().originName))
         steps.forEach { step ->
             Log.d("test", "${step.mode}")
             when (TransitMode.from(step.mode)) {
@@ -58,8 +58,8 @@ class MainViewModel @Inject constructor(
                 }
             }
         }
-        viewData.add(DestinationViewModel(transit))
-        Log.d("test", "${viewData.size}")
+        Log.d("test", "$transit")
+        viewData.add(DestinationViewModel(transit.steps.last().destinationName))
         return viewData
     }
 

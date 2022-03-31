@@ -4,7 +4,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.esther.mapsample.viewmodel.StepViewModel
 
-@BindingAdapter("stepViewModels")
+@BindingAdapter("itemViewModels")
 fun bindItemViewModels(recyclerView: RecyclerView, itemViewModels: List<StepViewModel>?) {
     val adapter = getOrCreateAdapter(recyclerView)
     adapter.updateItems(itemViewModels)
