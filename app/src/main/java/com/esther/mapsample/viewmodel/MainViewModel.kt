@@ -20,9 +20,9 @@ class MainViewModel @Inject constructor(
     private val transitMockData: TransitMockData,
     application: Application
 ) : AndroidViewModel(application) {
-    val transit: LiveData<Transit>
-        get() = _transit
-    private val _transit = MutableLiveData<Transit>()
+    val totalEstimatedTime: LiveData<String>
+        get() = _totalEstimatedTime
+    private val _totalEstimatedTime = MutableLiveData<String>()
 
     val stepList: LiveData<List<StepViewModel>>
         get() = _stepList
@@ -40,6 +40,8 @@ class MainViewModel @Inject constructor(
     private fun loadData() {
         viewModelScope.launch {
             val transit = transitMockData.getTransit()
+
+            _totalEstimatedTime.postValue(UnitConverter.sceToMin(transit.estimatedTime))
             val viewData = createViewData(transit, transit.steps)
             _stepList.postValue(viewData)
         }

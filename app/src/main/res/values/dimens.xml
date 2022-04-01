@@ -10,4 +10,6 @@
     <dimen name="btn_padding_vertical">0dp</dimen>
     <dimen name="step_line_margin_start">12dp</dimen>
     <dimen name="divider_margin">10dp</dimen>
+    <dimen name="btn_height">52dp</dimen>
+    <dimen name="btn_corner">10dp</dimen>
 </resources>

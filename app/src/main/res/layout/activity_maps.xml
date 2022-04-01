@@ -25,96 +25,195 @@
             android:id="@+id/fab_directions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/item_spacing"
+            android:layout_marginEnd="@dimen/item_spacing"
+            android:layout_marginBottom="70dp"
             android:clickable="true"
-            android:elevation="0dp"
             android:tint="@android:color/white"
             app:backgroundTint="@android:color/white"
             app:fabSize="normal"
-            app:layout_anchor="@id/fragment_map"
-            app:layout_anchorGravity="right|bottom"
+            app:layout_anchor="@+id/bottom_sheet"
+            app:layout_anchorGravity="right|top"
             app:rippleColor="@android:color/white"
             app:srcCompat="@android:drawable/ic_dialog_map" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/bottom_sheet"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="10dp"
-            app:behavior_hideable="false"
-            app:behavior_peekHeight="200dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardPreventCornerOverlap="false"
-            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+            android:layout_height="match_parent">
 
-            <androidx.core.widget.NestedScrollView
-                android:id="@+id/nestedScrollView"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/bottom_sheet"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:background="@color/white">
+                android:layout_height="match_parent"
+                app:behavior_hideable="false"
+                app:behavior_peekHeight="1800dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/item_spacing"
+                app:cardPreventCornerOverlap="false"
+                app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-<!--                <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content">-->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                    <!--                    <androidx.constraintlayout.widget.ConstraintLayout-->
-                    <!--                        android:id="@+id/bottom_sheet_header"-->
-                    <!--                        android:layout_width="match_parent"-->
-                    <!--                        android:layout_height="wrap_content"-->
-                    <!--                        android:background="@color/white"-->
-                    <!--                        android:orientation="horizontal"-->
-                    <!--                        app:layout_constraintEnd_toEndOf="parent"-->
-                    <!--                        app:layout_constraintStart_toStartOf="parent"-->
-                    <!--                        app:layout_constraintTop_toTopOf="parent">-->
+                    <androidx.core.widget.NestedScrollView
+                        android:id="@+id/nested_scrollview"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:overScrollMode="never"
+                        app:layout_constraintBottom_toTopOf="@+id/bottom_sheet_footer"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                    <!--                        <TextView-->
-                    <!--                            android:layout_width="wrap_content"-->
-                    <!--                            android:layout_height="wrap_content"-->
-                    <!--                            android:paddingLeft="@dimen/list_item_spacing_half"-->
-                    <!--                            android:paddingTop="@dimen/list_item_spacing_half"-->
-                    <!--                            android:paddingBottom="@dimen/list_item_spacing_half"-->
-                    <!--                            android:text="This is Header"-->
-                    <!--                            android:textColor="@android:color/black"-->
-                    <!--                            android:textSize="18sp"-->
-                    <!--                            app:layout_constraintStart_toStartOf="parent"-->
-                    <!--                            app:layout_constraintTop_toTopOf="parent" />-->
-                    <!--                    </androidx.constraintlayout.widget.ConstraintLayout>-->
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
 
-                    <androidx.recyclerview.widget.RecyclerView
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/bottom_sheet_header"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white"
+                                android:padding="@dimen/item_spacing"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="This is Header"
+                                    android:textColor="@color/black"
+                                    android:textSize="18sp"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:overScrollMode="never"
+                                android:padding="@dimen/item_spacing"
+                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                app:stepViewModels="@{viewModel.stepList}" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                    </androidx.core.widget.NestedScrollView>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/bottom_sheet_footer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:elevation="5dp"
                         android:padding="@dimen/item_spacing"
-                        app:stepViewModels="@{viewModel.stepList}"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+                        android:paddingEnd="@dimen/item_spacing"
+                        android:paddingBottom="@dimen/item_spacing"
+                        app:layout_constraintBottom_toBottomOf="parent">
 
-                    <!--                    <androidx.constraintlayout.widget.ConstraintLayout-->
-                    <!--                        android:id="@+id/bottom_sheet_footer"-->
-                    <!--                        android:layout_width="match_parent"-->
-                    <!--                        android:layout_height="wrap_content"-->
-                    <!--                        android:background="@color/white"-->
-                    <!--                        app:layout_constraintBottom_toBottomOf="parent"-->
-                    <!--                        app:layout_constraintEnd_toEndOf="parent"-->
-                    <!--                        app:layout_constraintStart_toStartOf="parent">-->
+                        <TextView
+                            android:id="@+id/tv_total_time"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/item_spacing_half"
+                            android:background="?attr/selectableItemBackground"
+                            android:fontFamily="@font/mulish_bold"
+                            android:lineSpacingExtra="5sp"
+                            android:text="@{viewModel.totalEstimatedTime}"
+                            android:textColor="@color/black"
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toTopOf="@+id/btn_left"
+                            app:layout_constraintStart_toStartOf="@+id/btn_left" />
 
-                    <!--                        <TextView-->
-                    <!--                            android:layout_width="wrap_content"-->
-                    <!--                            android:layout_height="wrap_content"-->
-                    <!--                            android:paddingLeft="@dimen/list_item_spacing_half"-->
-                    <!--                            android:paddingTop="@dimen/list_item_spacing_half"-->
-                    <!--                            android:paddingBottom="@dimen/list_item_spacing_half"-->
-                    <!--                            android:text="This is Footer"-->
-                    <!--                            android:textColor="@android:color/black"-->
-                    <!--                            android:textSize="18sp"-->
-                    <!--                            app:layout_constraintStart_toStartOf="parent"-->
-                    <!--                            app:layout_constraintTop_toTopOf="parent" />-->
-                    <!--                    </androidx.constraintlayout.widget.ConstraintLayout>-->
-<!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:background="?attr/selectableItemBackground"
+                            android:fontFamily="@font/mulish_bold"
+                            android:lineSpacingExtra="5sp"
+                            android:text="4:32AM"
+                            android:textColor="@color/black"
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/tv_total_time"
+                            app:layout_constraintEnd_toStartOf="@+id/imageView2" />
 
-            </androidx.core.widget.NestedScrollView>
-        </com.google.android.material.card.MaterialCardView>
+                        <ImageView
+                            android:id="@+id/imageView2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/item_spacing_quarter"
+                            android:src="@drawable/ic_chevron_right"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView"
+                            app:layout_constraintEnd_toStartOf="@+id/textView"
+                            app:layout_constraintTop_toTopOf="@+id/textView" />
 
+                        <TextView
+                            android:id="@+id/textView"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:background="?attr/selectableItemBackground"
+                            android:fontFamily="@font/mulish_bold"
+                            android:lineSpacingExtra="5sp"
+                            android:text="4:32AM"
+                            android:textColor="@color/black"
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/tv_total_time"
+                            app:layout_constraintEnd_toEndOf="@+id/btn_right" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_right"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/btn_height"
+                            android:layout_margin="@dimen/item_spacing_quarter"
+                            android:backgroundTint="@color/primary"
+                            android:insetTop="0dp"
+                            android:insetBottom="0dp"
+                            android:minWidth="0dp"
+                            android:minHeight="0dp"
+                            android:paddingHorizontal="@dimen/btn_padding_horizontal"
+                            android:paddingVertical="@dimen/btn_padding_vertical"
+                            android:text="ok"
+                            android:textColor="@color/white"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            app:cornerRadius="@dimen/btn_corner"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/btn_left" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_left"
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/btn_height"
+                            android:layout_margin="@dimen/item_spacing_quarter"
+                            android:backgroundTint="@color/secondary"
+                            android:insetTop="0dp"
+                            android:insetBottom="0dp"
+                            android:minWidth="0dp"
+                            android:minHeight="0dp"
+                            android:paddingHorizontal="@dimen/btn_padding_horizontal"
+                            android:paddingVertical="@dimen/btn_padding_vertical"
+                            android:text="cancel"
+                            android:textColor="@color/on_secondary"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            app:cornerRadius="@dimen/btn_corner"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/btn_right"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>

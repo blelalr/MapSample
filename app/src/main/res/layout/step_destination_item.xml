@@ -25,7 +25,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_destination"
+            android:id="@+id/tv_total_time"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/item_spacing_half"
@@ -53,9 +53,9 @@
             android:textSize="13sp"
             android:textStyle="bold"
             android:layout_marginEnd="@dimen/item_spacing_quarter"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_destination"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_total_time"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_destination"
+            app:layout_constraintTop_toTopOf="@+id/tv_total_time"
             tools:text="4:37 PM" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
