@@ -44,7 +44,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             .findFragmentById(R.id.fragment_map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
-
         binding.fabDirections.setOnClickListener {
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
         }
@@ -54,8 +53,30 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100f, resources.displayMetrics)
                 .toInt()
         bottomSheetBehavior.peekHeight = peekHeight
-        bottomSheetBehavior.isHideable = true
+        bottomSheetBehavior.isHideable = false
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+
+        binding.bottomSheet.post {
+            val bottomSheetVisibleHeight = binding.bottomSheet.height - binding.bottomSheet.top
+            binding.bottomSheetFooter.y =
+                (bottomSheetVisibleHeight - binding.bottomSheetFooter.height).toFloat()
+        }
+
+        BottomSheetBehavior.from(binding.bottomSheet).apply {
+
+            addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+                override fun onSlide(bottomSheet: View, slideOffset: Float) {
+
+                    // set the y coordinates of the bottom layout on bottom sheet slide
+                    val bottomSheetVisibleHeight = bottomSheet.height - bottomSheet.top
+                    binding.bottomSheetFooter.y =
+                        (bottomSheetVisibleHeight - binding.bottomSheetFooter.height).toFloat()
+                }
+
+                override fun onStateChanged(bottomSheet: View, newState: Int) {
+                }
+            })
+        }
     }
 
 

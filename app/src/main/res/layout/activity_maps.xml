@@ -25,96 +25,101 @@
             android:id="@+id/fab_directions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/item_spacing"
+            android:layout_marginEnd="@dimen/item_spacing"
+            android:layout_marginBottom="70dp"
             android:clickable="true"
             android:elevation="0dp"
             android:tint="@android:color/white"
             app:backgroundTint="@android:color/white"
             app:fabSize="normal"
-            app:layout_anchor="@id/fragment_map"
-            app:layout_anchorGravity="right|bottom"
+            app:layout_anchor="@+id/bottom_sheet"
+            app:layout_anchorGravity="right|top"
             app:rippleColor="@android:color/white"
             app:srcCompat="@android:drawable/ic_dialog_map" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/bottom_sheet"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="10dp"
-            app:behavior_hideable="false"
-            app:behavior_peekHeight="200dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardPreventCornerOverlap="false"
-            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+            android:layout_height="match_parent">
 
-            <androidx.core.widget.NestedScrollView
-                android:id="@+id/nestedScrollView"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/bottom_sheet"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:background="@color/white">
+                android:layout_height="match_parent"
+                android:elevation="10dp"
+                app:behavior_hideable="false"
+                app:behavior_peekHeight="200dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardPreventCornerOverlap="false"
+                app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-<!--                <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content">-->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:behavior_hideable="false">
 
-                    <!--                    <androidx.constraintlayout.widget.ConstraintLayout-->
-                    <!--                        android:id="@+id/bottom_sheet_header"-->
-                    <!--                        android:layout_width="match_parent"-->
-                    <!--                        android:layout_height="wrap_content"-->
-                    <!--                        android:background="@color/white"-->
-                    <!--                        android:orientation="horizontal"-->
-                    <!--                        app:layout_constraintEnd_toEndOf="parent"-->
-                    <!--                        app:layout_constraintStart_toStartOf="parent"-->
-                    <!--                        app:layout_constraintTop_toTopOf="parent">-->
-
-                    <!--                        <TextView-->
-                    <!--                            android:layout_width="wrap_content"-->
-                    <!--                            android:layout_height="wrap_content"-->
-                    <!--                            android:paddingLeft="@dimen/list_item_spacing_half"-->
-                    <!--                            android:paddingTop="@dimen/list_item_spacing_half"-->
-                    <!--                            android:paddingBottom="@dimen/list_item_spacing_half"-->
-                    <!--                            android:text="This is Header"-->
-                    <!--                            android:textColor="@android:color/black"-->
-                    <!--                            android:textSize="18sp"-->
-                    <!--                            app:layout_constraintStart_toStartOf="parent"-->
-                    <!--                            app:layout_constraintTop_toTopOf="parent" />-->
-                    <!--                    </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-                    <androidx.recyclerview.widget.RecyclerView
+                    <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/item_spacing"
-                        app:stepViewModels="@{viewModel.stepList}"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toTopOf="@+id/bottom_sheet_footer"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                    <!--                    <androidx.constraintlayout.widget.ConstraintLayout-->
-                    <!--                        android:id="@+id/bottom_sheet_footer"-->
-                    <!--                        android:layout_width="match_parent"-->
-                    <!--                        android:layout_height="wrap_content"-->
-                    <!--                        android:background="@color/white"-->
-                    <!--                        app:layout_constraintBottom_toBottomOf="parent"-->
-                    <!--                        app:layout_constraintEnd_toEndOf="parent"-->
-                    <!--                        app:layout_constraintStart_toStartOf="parent">-->
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/bottom_sheet_header"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
 
-                    <!--                        <TextView-->
-                    <!--                            android:layout_width="wrap_content"-->
-                    <!--                            android:layout_height="wrap_content"-->
-                    <!--                            android:paddingLeft="@dimen/list_item_spacing_half"-->
-                    <!--                            android:paddingTop="@dimen/list_item_spacing_half"-->
-                    <!--                            android:paddingBottom="@dimen/list_item_spacing_half"-->
-                    <!--                            android:text="This is Footer"-->
-                    <!--                            android:textColor="@android:color/black"-->
-                    <!--                            android:textSize="18sp"-->
-                    <!--                            app:layout_constraintStart_toStartOf="parent"-->
-                    <!--                            app:layout_constraintTop_toTopOf="parent" />-->
-                    <!--                    </androidx.constraintlayout.widget.ConstraintLayout>-->
-<!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="This is Header"
+                                android:textColor="@android:color/black"
+                                android:textSize="18sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </androidx.core.widget.NestedScrollView>
-        </com.google.android.material.card.MaterialCardView>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/item_spacing"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:stepViewModels="@{viewModel.stepList}" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
 
+                    <LinearLayout
+                        android:id="@+id/bottom_sheet_footer"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:background="#FF03DAC5"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent">
+
+                        <Button
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="40dp"
+                            android:layout_weight="1"
+                            android:text="cancel" />
+
+                        <Button
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="8dp"
+                            android:layout_weight="1"
+                            android:text="ok" />
+
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>
