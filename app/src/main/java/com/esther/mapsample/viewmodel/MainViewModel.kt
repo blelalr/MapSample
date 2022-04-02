@@ -20,9 +20,22 @@ class MainViewModel @Inject constructor(
     private val transitMockData: TransitMockData,
     application: Application
 ) : AndroidViewModel(application) {
+    val totalPrice: LiveData<String>
+        get() = _totalPrice
+    private val _totalPrice = MutableLiveData<String>()
+
     val totalEstimatedTime: LiveData<String>
         get() = _totalEstimatedTime
     private val _totalEstimatedTime = MutableLiveData<String>()
+
+    val departureTime: LiveData<String>
+        get() = _departureTime
+    private val _departureTime = MutableLiveData<String>()
+
+    val arriveTime: LiveData<String>
+        get() = _arriveTime
+    private val _arriveTime = MutableLiveData<String>()
+
 
     val stepList: LiveData<List<StepViewModel>>
         get() = _stepList
@@ -40,8 +53,10 @@ class MainViewModel @Inject constructor(
     private fun loadData() {
         viewModelScope.launch {
             val transit = transitMockData.getTransit()
-
-            _totalEstimatedTime.postValue(UnitConverter.sceToMin(transit.estimatedTime))
+            _totalEstimatedTime.postValue("${transit.estimatedTime} min")
+            _totalPrice.postValue("Buy (\$${transit.totalPrice})")
+            _departureTime.postValue(UnitConverter.unixTimeToDisplayTime(transit.startedOn))
+            _arriveTime.postValue(UnitConverter.unixTimeToDisplayTime(transit.endedOn))
             val viewData = createViewData(transit, transit.steps)
             _stepList.postValue(viewData)
         }
@@ -56,10 +71,19 @@ class MainViewModel @Inject constructor(
                 TransitMode.Train, TransitMode.Tram, TransitMode.Bus, TransitMode.Subway -> {
                     val hint: String = String.format(
                         getResString(R.string.others_hint),
-                        UnitConverter.unitTimeToMin(step.arrive)
+                        UnitConverter.unixTimeToMin(step.arrive)
                     )
                     val lineColor = Color.parseColor(step.stepsDetail.first().line.color)
-                    viewData.add(OthersViewModel(step, hint, lineColor))
+
+                    viewData.add(
+                        OthersViewModel(
+                            step,
+                            hint,
+                            lineColor,
+                            UnitConverter.unixTimeToDisplayTime(step.startedOn),
+                            UnitConverter.unixTimeToDisplayTime(step.endedOn)
+                        )
+                    )
                 }
                 TransitMode.Walk -> {
                     val hint: String = String.format(

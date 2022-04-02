@@ -1,5 +1,10 @@
 package com.esther.mapsample.util
 
+import java.text.SimpleDateFormat
+import java.time.Instant
+import java.time.ZoneId
+import java.util.*
+
 object UnitConverter {
 
     fun meterToMiles(meters: Int): String {
@@ -15,7 +20,14 @@ object UnitConverter {
 
     }
 
-    fun unitTimeToMin(arrive: Int): String {
+    fun unixTimeToMin(unixTime: Int): String {
         return "11"
+    }
+
+    fun unixTimeToDisplayTime(unixTime: Long): String {
+        val sdf = SimpleDateFormat("hh:mm a")
+        val netDate = Date(unixTime)
+        val date =sdf.format(netDate)
+        return date.toString()
     }
 }

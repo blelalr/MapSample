@@ -7,7 +7,7 @@ import com.google.gson.reflect.TypeToken
 
 data class Transit(
     @SerializedName("ended_on")
-    val endedOn: Int,
+    val endedOn: Long,
     @SerializedName("estimated_time")
     val estimatedTime: Int,
     @SerializedName("fare_status")
@@ -15,7 +15,7 @@ data class Transit(
     @SerializedName("mode")
     val mode: String,
     @SerializedName("started_on")
-    val startedOn: Int,
+    val startedOn: Long,
     @SerializedName("steps")
     val steps: List<Step>,
     @SerializedName("total_price")

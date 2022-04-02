@@ -82,6 +82,8 @@
             android:textAppearance="@style/MyTextButtonTextFont"
             android:fontFamily="@font/mulish_bold"
             android:text="@string/preview"
+            android:textColor="@color/black"
+            android:textAllCaps="false"
             android:layout_marginEnd="@dimen/item_spacing_quarter"
             app:cornerRadius="4dp"
             app:layout_constraintBottom_toBottomOf="parent"

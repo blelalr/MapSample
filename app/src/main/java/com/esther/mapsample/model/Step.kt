@@ -19,7 +19,7 @@ data class Step(
     @SerializedName("distance")
     val distance: Int,
     @SerializedName("ended_on")
-    val endedOn: Int,
+    val endedOn: Long,
     @SerializedName("estimated_time")
     val estimatedTime: Int,
     @SerializedName("firststop")
@@ -57,7 +57,7 @@ data class Step(
     @SerializedName("short_name_no")
     val shortNameNo: String,
     @SerializedName("started_on")
-    val startedOn: Int,
+    val startedOn: Long,
     @SerializedName("station_arr")
     val stationArr: List<Any>,
     @SerializedName("steps_detail")
